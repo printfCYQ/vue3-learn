@@ -6,7 +6,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node script/dev.js"
+    "dev": "node script/dev.js shared -f esm"
   },
   "keywords": [],
   "author": "",
