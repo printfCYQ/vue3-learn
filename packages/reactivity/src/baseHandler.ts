@@ -1,3 +1,5 @@
+import { track } from "./reactiveEffect";
+
 export enum ReactiveFlags {
     IS_REACTIVE = "__v_isReactive"
 }
@@ -11,6 +13,9 @@ export const mutableHandlers: ProxyHandler<any> = {
         if (key === ReactiveFlags.IS_REACTIVE) {
             return true
         }
+
+        track(target, key); // 收集 target[key] 和 effect 关联
+
         return Reflect.get(target, key, recevier)
     },
     set(target, key, value, recevier) {
