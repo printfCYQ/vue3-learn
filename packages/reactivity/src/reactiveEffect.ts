@@ -27,8 +27,6 @@ export function track(target, key) {
         }
 
         trackEffects(activeEffect, dep); // 依赖收集:将当前 ēffect 添加到 dep（映射表）中，后续根据值的变化，触发dep中的effect
-
-        console.log(targetMap)
     }
 }
 

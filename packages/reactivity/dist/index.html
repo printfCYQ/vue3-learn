@@ -14,18 +14,22 @@
         import { effect, reactive } from './reactivity.js';
 
 
-        const user = { name: 'CYQ', age: 18 }
+        const user = { name: 'CYQ', age: 18, visible: true }
         const u1 = reactive(user)
 
 
         effect(() => {
-            app.innerHTML = `name:${u1.name},age:${u1.age}`;
+            // app.innerHTML = `name:${u1.name},age:${u1.age}`;
+            app.innerHTML = u1.visible ? `name:${u1.name}` : `age:${u1.age}`
         })
         // effect(() => {
         //     console.log(u1.age);
         // })
         setTimeout(() => {
-            u1.age++
+            u1.visible = false
+            setTimeout(() => {
+                u1.name = 'CYQ2'
+            }, 1000)
         }, 1000)
     </script>
 </body>
