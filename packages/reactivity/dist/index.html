@@ -19,10 +19,13 @@
 
 
         effect(() => {
-            app.innerHTML = `name:${u1.name},age:${u1.age}`
+            app.innerHTML = `name:${u1.name},age:${u1.age}`;
         })
+        // effect(() => {
+        //     console.log(u1.age);
+        // })
         setTimeout(() => {
-            user.age += 1
+            u1.age++
         }, 1000)
     </script>
 </body>

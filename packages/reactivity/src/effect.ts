@@ -10,6 +10,11 @@ export function effect(fn, options) {
 
 export let activeEffect;
 class ReactiveEffect {
+    _trackId = 0; // 用于记录当前 effect 执行了几次
+    deps = [];
+    _depsLength = 0;
+
+
     public active = true; // 创建的effect是否是响应式的
 
     constructor(public fn, public scheduler) { }
@@ -28,6 +33,20 @@ class ReactiveEffect {
 
         } finally {
             activeEffect = lastEffect
+        }
+    }
+}
+
+export function trackEffects(effect, dep) {
+    dep.set(effect, effect._trackId);
+
+    effect.deps[effect._depsLength++] = dep; // 让effect和dep关联
+}
+
+export function triggerEffects(dep) {
+    for (const effect of dep.keys()) {
+        if (effect.scheduler) {
+            effect.scheduler()
         }
     }
 }
